@@ -295,7 +295,7 @@
         } else {
             //If the view is not flexible width, then we position it centered in the view
             //without stretching it.
-            view.frame = CGRectMake(floorf(CGRectGetMinX(boxFrame) + totalWidth*0.5f - view.frame.size.width*0.5f), view.frame.origin.y, view.frame.size.width, view.frame.size.height);
+            view.frame = CGRectMake(floorf(CGRectGetMinX(boxFrame) /*+ totalWidth*0.5f - view.frame.size.width*0.5f*/), view.frame.origin.y, view.frame.size.width, view.frame.size.height);
         }
         
         //and if dividers are enabled, we record their position for the drawing methods
@@ -308,7 +308,7 @@
         i++;
     }
     
-    titleLabel.frame = CGRectMake(floorf(totalWidth*0.5f - titleSize.width*0.5f), 0, titleSize.width, titleSize.height);
+    titleLabel.frame = CGRectMake(0/*floorf(totalWidth*0.5f - titleSize.width*0.5f)*/, 0, titleSize.width, titleSize.height);
     
     //Store the titleView as an instance variable if it is larger than 0 height (not an empty string)
     if(titleSize.height > 0) {
