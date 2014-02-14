@@ -316,16 +316,16 @@
     for (UIView *view in viewArray) {
         if ([view autoresizingMask] == UIViewAutoresizingFlexibleWidth) {
             //Now make sure all flexible views are the full width
-            view.frame = CGRectMake(view.frame.origin.x, view.frame.origin.y, totalWidth, view.frame.size.height);
+            view.frame = CGRectMake(0, view.frame.origin.y, totalWidth, view.frame.size.height);
         } else {
             //If the view is not flexible width, then we position it centered in the view
             //without stretching it.
-            view.frame = CGRectMake(floorf(CGRectGetMinX(boxFrame) + totalWidth*0.5f - view.frame.size.width*0.5f), view.frame.origin.y, view.frame.size.width, view.frame.size.height);
+            view.frame = CGRectMake(0, view.frame.origin.y, view.frame.size.width, view.frame.size.height);
         }
         
         //and if dividers are enabled, we record their position for the drawing methods
         if (kShowDividersBetweenViews && i != viewArray.count-1) {
-            CGRect dividerRect = CGRectMake(view.frame.origin.x, floorf(view.frame.origin.y + view.frame.size.height + kBoxPadding*0.5f), view.frame.size.width, 0.5f);
+            CGRect dividerRect = CGRectMake(0, floorf(view.frame.origin.y + view.frame.size.height + kBoxPadding*0.5f), view.frame.size.width, 0.5f);
             
             [((NSMutableArray *)dividerRects) addObject:[NSValue valueWithCGRect:dividerRect]];
         }
@@ -333,7 +333,7 @@
         i++;
     }
     
-    titleLabel.frame = CGRectMake(floorf(totalWidth*0.5f - titleSize.width*0.5f), 0, titleSize.width, titleSize.height);
+    titleLabel.frame = CGRectMake(0, 0, titleSize.width, titleSize.height);
     
     //Store the titleView as an instance variable if it is larger than 0 height (not an empty string)
     if (titleSize.height > 0) {
